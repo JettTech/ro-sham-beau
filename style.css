@@ -1,0 +1,188 @@
+body {
+  box-sizing: border-box;
+}
+
+#header-img {
+  height: 400px; 
+}
+
+h1 {
+  padding: 15px;
+  font-size: 36px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h4 {
+  text-align: center;
+  margin: 20px 50px;
+}
+
+hr {
+ background-color: white; 
+ width: 60%;
+}
+
+input {
+  background-color: #fffcf7;
+}
+
+#letsplay {
+  width: 1024px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+
+.parallax { 
+    background-image: url("./assets/rps_background.jpg");
+/*    height: 200px; */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*/=====================================================
+
+   WelcomeZone Styling 
+
+=====================================================/*/
+
+#welcome-zone {
+  width: 75%;
+  margin: 25px auto;
+  text-align: center;
+}
+
+#welcome-zone input {
+  width: 300px;
+  height: 50px;
+  font-size: 26px;
+  margin: 0 auto;
+}
+
+#welcome-zone button {
+  margin-top: 15px;
+  font-size: 22px;
+}
+
+/*/=====================================================
+
+  Turn Indicator Styling 
+
+=====================================================/*/
+
+#current-turn {
+  width: 75%;
+  margin: 15px auto;
+  text-align: center;
+}
+
+/*/=====================================================
+
+  Game RPS Styling 
+
+=====================================================/*/
+#game-div {
+  text-align: center;
+}
+
+#player1-name,
+#player2-name 
+  margin-bottom: 15px;
+  font-size: 28px;
+}
+
+#player1-chosen,
+#player2-chosen {
+  margin-top: 25px;
+  font-size: 60px;
+}
+
+li {
+  margin: 12px 0;
+  font-size: 24px;
+}
+
+.outcomes {
+  position: absolute;
+  bottom: 10px;
+  width: 90%;
+  text-align: center;
+}
+
+.outcome-trackers {
+  display: inline-block;
+}
+
+#result h2 {
+  margin-top: 20px;
+  font-size: 60px;
+}
+
+
+/*/=====================================================
+  Chatbox Styling 
+=====================================================/*/
+
+#chat {
+  position: relative;
+  width: 600px;
+  height: 150px;
+  padding: 10px;
+  margin: 20px auto;
+}
+
+#chat-messages {
+  height: 125px;
+  overflow: auto;
+  background-color: #fffcf7;
+}
+
+#chat-header {
+  margin-top: 15px;
+  position: relative;
+  left: 35%;
+}
+
+#chat-input {
+  width: 550px;
+  font-size: 18px;
+  margin: 0 auto;
+}
+
+#chat-send {
+  width: 180px;
+  margin: 0 auto;
+  margin-top: 15px;
+  font-size: 22px;
+  position: relative;
+  left: 32%;
+}
+
+.player1 {
+  color: #419d78;
+}
+
+.player2 {
+  color: #2d3047;
+}
+
+.player0 {
+  color: #000;
+  background-color: #d3d3d3;
+}
+
+/*/=====================================================
+  ScoreBoard Styling 
+=====================================================/*/
+tr,
+th,
+td {
+  text-align: center;
+}
+
+

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Ro-Sham-Beau</title>
+
+    <!-- CSS reset Stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
+
+    <!-- Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Bootswatch Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/solar/bootstrap.min.css">
+
+    <!-- FontAwesome Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Local CSS File -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Firebase Link -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+      
+    <!-- jQuery Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Bootstrap Script -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- Local Script File -->
+    <script src="app.js"></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Ro-Sham-Beau</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav mr-auto justify-content-end">
+          <li class="nav-item active">
+            <a class="nav-link" href="#letsplay">Let's Play!<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#score-board">Score Board</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" target="_blank" href="https://www.nps.gov/york/learn/historyculture/rochambeaubio.htm">Who is Rochambeau?</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="parallax" style="height: 100px;"></div>
+
+    <div id="header-img" class="row jumbotron">
+      <header class="col-md-12">
+        <h1 class="text-light">Welcome to the Ro-Sham-Beau Multiplayer Game</h1>
+        <hr class="text-light" />
+        <h4 class="text-primary">Sign in to enlist as a player.  Once two players have joined the battlefield, the game will commence.  Don't forget to reference the chat box underneath the game for live communication with your opponent or current audience. <br/> Good luck!</h4>
+      </header>
+    </div>
+  
+    <div class="parallax" style="height: 300px;"></div>
+
+    <div id="letsplay" class="container-fluid">
+      <div class="jumbotron">
+        <div id="welcome-zone" class="row">
+          <div class="col-md-12 form-group">
+            <label class="col-form-label col-form-label-lg text-center" for="inputLarge"><h2>Enlist as a Player</h2></label>
+            <input id="username" class="form-control form-control-lg" type="text" placeholder="Player Name" id="inputLarge">
+            <button id="start" type="submit" class="btn btn-success">Enter Game</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div id="current-turn" class="col-md-12"></div>
+        </div>
+
+        <div id="game-div" class="row">
+          <div class="col-md-4">
+            <div id="player1" class="card bg-primary mb-3" style="max-width: 20rem;">
+              <div class="card-header text-light">First Player</div>
+              <div class="card-body">
+                <h4 class="card-text">
+                  <ul></ul>
+                  <div id="player1-chosen"></div>
+                  <div class="outcomes">
+                    <div class="outcome-trackers" id="player1-wins"></div>
+                    <div class="outcome-trackers" id="player1-losses"></div>
+                  </div>
+                </h4>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="card border-danger mb-3">
+              <div class="card-header">Record of Attacks</div>
+              <div class="card-body">
+                <h4 id="result" class="card-text"></h4>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div id="player1" class="card bg-primary mb-3" style="max-width: 20rem;">
+              <div class="card-header text-light">Second Player</div>
+              <div class="card-body">
+                <h4 class="card-text">
+                  <ul>
+                  </ul>
+                  <div id="player2-chosen"></div>
+                  <div class="outcomes">
+                    <div class="outcome-trackers" id="player2-wins"></div>
+                    <div class="outcome-trackers" id="player2-losses"></div>
+                  </div>
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="chat" class="row">
+          <div id="chat-bar" class="col-md-12 form-group">
+            <label id="chat-header" class="col-form-label col-form-label-lg text-center" for="inputLarge"><h2>Message Arena</h2></label>
+            <input id="chat-input" class="form-control form-control-lg" type="text" placeholder="The Battle Begins Here" id="inputLarge">
+            <button id="chat-send" type="submit" class="btn btn-primary">Launch Message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="parallax" style="height: 300px;"></div>
+
+    <div id="score-board" class="container-fluid jumbotron">
+      <div class="row">
+        <div class="col-md-12">      
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Player</th>
+                <th scope="col">Games Won</th>
+                <th scope="col">Games Lost</th>
+                <th scope="col">Total Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table-active">
+                <th scope="row">One</th>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <th scope="row">Two</th>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="parallax" style="height: 300px;"></div>
+
+    <div id="footer" class="container">
+      <footer class="row">
+        <div class="col-md-12">
+          <h6 class="text-center text-light" style="margin:20px;">Ro-Sham-Beau Multiplayer Game | Lisa Jetton 2018</h6>   
+        </div>
+      </footer>
+    </div>
+
+  </body>
+</html>
+
