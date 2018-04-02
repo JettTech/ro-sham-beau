@@ -30,15 +30,13 @@ $("#start").click(function() {
     assignPlayerNum();
   }
 });
-
-// listener for 'enter' in username input
+// + listener for "ENTER" (instead of clicking the Start Button) in username input
 $("#username").keypress(function(e) {
   if (e.keyCode === 13 && $("#username").val() !== "") {
     username = capitalize($("#username").val());
     assignPlayerNum();
   }
 });
-
 // Function to capitalize usernames
 function capitalize(name) {
   return name.charAt(0).toUpperCase() + name.slice(1);
@@ -47,26 +45,19 @@ function capitalize(name) {
 // CHAT LISTENERS
 // Chat send button listener, grabs input and pushes to firebase. (Firebase's push automatically creates a unique key)
 $("#chat-send").click(function() {
-
   if ($("#chat-input").val() !== "") {
-
     var message = $("#chat-input").val();
-
     chatBoxMsg.push({
       name: username,
       message: message,
       time: firebase.database.ServerValue.TIMESTAMP,
       idNum: playerNum
     });
-
     $("#chat-input").val("");
   }
 });
-
 // Chatbox input listener
-
 $("#chat-input").keypress(function(e) {
-
   if (e.keyCode === 13 && $("#chat-input").val() !== "") {
     var message = $("#chat-input").val();
     chatBoxMsg.push({
@@ -75,16 +66,12 @@ $("#chat-input").keypress(function(e) {
       time: firebase.database.ServerValue.TIMESTAMP,
       idNum: playerNum
     });
-
     $("#chat-input").val("");
   }
 });
-
 // Click event for dynamically added <li> elements
 $(document).on("click", "li", function() {
-
   console.log("click");
-
   // Grabs text from li choice
   var clickChoice = $(this).text();
   console.log(playerRef);
@@ -96,7 +83,7 @@ $(document).on("click", "li", function() {
   $("#player" + playerNum + " ul").empty();
   $("#player" + playerNum + "chosen").text(clickChoice);
 
-  // Increments turn. Turn goes from:
+  // Increments turn. Turn goes proceeds according to below.
   // 1 - player 1
   // 2 - player 2
   // 3 - determine winner
@@ -107,20 +94,19 @@ $(document).on("click", "li", function() {
 
 // Update chat on screen when new message detected - ordered by 'time' value
 chatBoxMsg.orderByChild("time").on("child_added", function(snapshot) {
-
   // If idNum is 0, then its a disconnect message and displays accordingly
   // If not - its a user chat message
   if (snapshot.val().idNum === 0) {
-    $("#chat-messages").append("<p class=player" + snapshot.val().idNum + "><span>"
+    $("#chatBox").append("<p class=player" + snapshot.val().idNum + "><span>"
     + snapshot.val().name + "</span>: " + snapshot.val().message + "</p>");
   }
   else {
-    $("#chat-messages").append("<p class=player" + snapshot.val().idNum + "><span>"
+    $("#chatBox").append("<p class=player" + snapshot.val().idNum + "><span>"
     + snapshot.val().name + "</span>: " + snapshot.val().message + "</p>");
   }
 
   // Keeps div scrolled to bottom on each update.
-  $("#chat-messages").scrollTop($("#chat-messages")[0].scrollHeight);
+  $("#chatBox").scrollTop($("#chatBox")[0].scrollHeight);
 });
 
 // Tracks changes in key which contains player objects
@@ -142,33 +128,43 @@ playersRef.on("value", function(snapshot) {
     $("#player1-name").text(firstPlayerData.name);
     $("#player1-wins").text("Wins: " + firstPlayerData.wins);
     $("#player1-losses").text("Losses: " + firstPlayerData.losses);
+    //GameBoard Stats
+    $("#player1-chartWins").text("Wins: " + firstPlayerData.wins);
+    $("#player1-chartLosses").text("Losses: " + firstPlayerData.losses);
   }
   else {
     // If no player 1, clear win/loss data and show waiting
-    $("#player1-name").text("Waiting for Player 1");
+    $("#player1-name").text("One");
     $("#player1-wins").empty();
     $("#player1-losses").empty();
+    //GameBoard Stats
+    $("#player1-chartWins").text("0");
+    $("#player1-chartLosses").text("0");
   }
   // If there's a player 2, fill in name and win/loss data
   if (secondPlayerExists) {
     $("#player2-name").text(secondPlayerData.name);
     $("#player2-wins").text("Wins: " + secondPlayerData.wins);
     $("#player2-losses").text("Losses: " + secondPlayerData.losses);
+    //GameBoard Stats
+    $("#player2-chartWins").text("Wins: " + secondPlayerData.wins);
+    $("#player2-chartLosses").text("Losses: " + secondPlayerData.losses);
   }
   else {
     // If no player 2, clear win/loss and show waiting
-    $("#player2-name").text("Waiting for Player 2");
+    $("#player2-name").text("Two");
     $("#player2-wins").empty();
     $("#player2-losses").empty();
+    //GameBoard Stats
+    $("#player2-chartWins").text("0");
+    $("#player2-chartLosses").text("0");
   }
 });
 
 // Detects changes in current turn key
 currentTurnRef.on("value", function(snapshot) {
-
   // Gets current turn from snapshot
   currentTurn = snapshot.val();
-
   // The following only occurs AFTER Logged-IN
   if (playerNum) {
 
