@@ -1,7 +1,7 @@
 # ro-sham-beau
 An interactive multiplayer take on the classic Rock, Paper, Scissors game.  All player information and stats are stored realtime in the Firebase DB.
 
-Ready to get Giphy with it?  Click [here](https://jetttech.github.io/GifTastic/)!
+Ready to get Giphy with it?  Click [here](https://jetttech.github.io/ro-sham-beau/.)!
 
 Built by [Lisa Jetton](https://github.com/JettTech/).
 
