@@ -10,7 +10,7 @@ Built by [Lisa Jetton](https://github.com/JettTech/).
 - - - -
 
  ### Deployment ###
- https://jetttech.github.io/ro-sham-beau/.
+https://jetttech.github.io/ro-sham-beau/.
 
  - - - -
 
