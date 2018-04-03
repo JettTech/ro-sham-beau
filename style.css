@@ -38,6 +38,10 @@ hr {
  width: 60%;
 }
 
+li {
+  color: white;
+}
+
 input {
   background-color: #fffcf7;
 }
@@ -46,7 +50,7 @@ input {
    justify-content: end;
 }
 
-#letsplay {
+#lets-play {
   width: 100%;
   margin: 0 auto;
   padding-bottom: 50px;
@@ -81,7 +85,7 @@ input {
 
 /*/=====================================================
 
-   WelcomeZone Styling 
+   Welcome Zone Styling (swap)
 
 =====================================================/*/
 
@@ -131,7 +135,7 @@ input {
   margin-bottom: 15px;
   font-size: 28px;
 }
-
+swap
 #player1-chosen,
 #player2-chosen {
   margin-top: 25px;
