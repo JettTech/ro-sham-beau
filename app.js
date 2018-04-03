@@ -10,7 +10,7 @@
   firebase.initializeApp(config);
 
 var database = firebase.database();
-var chatBoxMsg = database.ref("/chat");
+var chatData = database.ref("/chat");
 var playersRef = database.ref("players");
 var currentTurnRef = database.ref("turn");
 var username = "Guest";
@@ -47,7 +47,7 @@ function capitalize(name) {
 $("#chat-send").click(function() {
   if ($("#chat-input").val() !== "") {
     var message = $("#chat-input").val();
-    chatBoxMsg.push({
+    chatData.push({
       name: username,
       message: message,
       time: firebase.database.ServerValue.TIMESTAMP,
@@ -60,7 +60,7 @@ $("#chat-send").click(function() {
 $("#chat-input").keypress(function(e) {
   if (e.keyCode === 13 && $("#chat-input").val() !== "") {
     var message = $("#chat-input").val();
-    chatBoxMsg.push({
+    chatData.push({
       name: username,
       message: message,
       time: firebase.database.ServerValue.TIMESTAMP,
@@ -93,7 +93,7 @@ $(document).on("click", "li", function() {
 });
 
 // Update chat on screen when new message detected - ordered by 'time' value
-chatBoxMsg.orderByChild("time").on("child_added", function(snapshot) {
+chatData.orderByChild("time").on("child_added", function(snapshot) {
   // If idNum is 0, then its a disconnect message and displays accordingly
   // If not - its a user chat message
   if (snapshot.val().idNum === 0) {
@@ -129,6 +129,7 @@ playersRef.on("value", function(snapshot) {
     $("#player1-wins").text("Wins: " + firstPlayerData.wins);
     $("#player1-losses").text("Losses: " + firstPlayerData.losses);
     //GameBoard Stats
+    $("#player1-name-stats").text(firstPlayerData.name);
     $("#player1-chartWins").text("Wins: " + firstPlayerData.wins);
     $("#player1-chartLosses").text("Losses: " + firstPlayerData.losses);
   }
@@ -147,6 +148,7 @@ playersRef.on("value", function(snapshot) {
     $("#player2-wins").text("Wins: " + secondPlayerData.wins);
     $("#player2-losses").text("Losses: " + secondPlayerData.losses);
     //GameBoard Stats
+    $("#player2-name-stats").text(secondPlayerData.name);
     $("#player2-chartWins").text("Wins: " + secondPlayerData.wins);
     $("#player2-chartLosses").text("Losses: " + secondPlayerData.losses);
   }
@@ -221,15 +223,15 @@ currentTurnRef.on("value", function(snapshot) {
         }
       };
       //  Delay for 2 seconds to display results, then resets
-      setTimeout(resetGame, 2000);
+      setTimeout(resetGame, 5000);
     }
 
     else {
       //  if (playerNum) {
       //    $("#player" + playerNum + " ul").empty();
       //  }
-      $("#player1 ul").empty();
-      $("#player2 ul").empty();
+      $("#player1 .card-body .card-text ul").empty();
+      $("#player2 .card-body .card-text ul").empty();
       $("#current-turn").html("<h2>Waiting for another player to join.</h2>");
       $("#player2").css("border", "2px solid black");
       $("#player1").css("border", "2px solid black");

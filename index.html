@@ -22,8 +22,8 @@
     <link rel="stylesheet" href="style.css">
 
     <!-- Firebase Link -->
-    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+
       
     <!-- jQuery Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -70,9 +70,11 @@
     <div id="letsplay" class="row jumbotron">
       <div id="welcome-zone" class="row">
         <div class="col-md-12 form-group">
-          <label class="col-form-label col-form-label-lg text-center" for="username"><h2>Enlist as a Player</h2></label>
+          <label class="col-form-label col-form-label-lg text-center" for="username">
+            <h2>Enlist as a Player</h2>
+          </label>
           <input id="username" class="form-control form-control-lg" type="text" placeholder="Player Name">
-          <button id="start" type="submit" class="btn btn-success">Enter Game</button>
+          <button id="start" class="btn btn-success">Enter Game</button>
 
           <br/>
           <br/>
@@ -84,16 +86,17 @@
       <hr style="border:2px solid #dee2e6"/>
 
       <div id="game-div" class="row jumbotron">
-        <div class="col-md-4">
-          <div id="player1" class="card bg-primary mb-3">
-            <div class="card-header text-light">First Player</div>
+        <div id="player1" class="col-md-4">
+          <div class="card bg-primary mb-3">
+            <h3 id="player1-name" class="card-header text-light">First Player</h3>
             <div class="card-body">
               <h4 class="card-text">
-                <ul></ul>
+                <ul>
+                </ul>
                 <div id="player1-chosen"></div>
                 <div class="outcomes">
-                  <div class="outcome-trackers" id="player1-wins"></div>
-                  <div class="outcome-trackers" id="player1-losses"></div>
+<!--                   <div class="outcome-trackers text-white" id="player1-wins"></div>
+                  <div class="outcome-trackers text-white" id="player1-losses"></div> -->
                 </div>
               </h4>
             </div>
@@ -102,24 +105,24 @@
         
         <div class="col-md-4">
           <div class="card border-danger mb-3">
-            <div class="card-header">Record of Attacks</div>
+            <h3 class="card-header">Referee</h3>
             <div class="card-body">
               <h4 id="result" class="card-text"></h4>
             </div>
           </div>
         </div>
         
-        <div class="col-md-4">
-          <div id="player1" class="card bg-primary mb-3">
-            <div class="card-header text-light">Second Player</div>
+        <div id="player2" class="col-md-4">
+          <div class="card bg-primary mb-3">
+            <h3 id="player2-name" class="card-header text-light">Second Player</h3>
             <div class="card-body">
               <h4 class="card-text">
                 <ul>
                 </ul>
                 <div id="player2-chosen"></div>
                 <div class="outcomes">
-                  <div class="outcome-trackers" id="player2-wins"></div>
-                  <div class="outcome-trackers" id="player2-losses"></div>
+<!--                   <div class="outcome-trackers text-white" id="player2-wins"></div>
+                  <div class="outcome-trackers text-white" id="player2-losses"></div> -->
                 </div>
               </h4>
             </div>
@@ -150,21 +153,18 @@
                 <th scope="col">Player</th>
                 <th scope="col">Games Won</th>
                 <th scope="col">Games Lost</th>
-                <th scope="col">Total Points</th>
               </tr>
             </thead>
             <tbody>
               <tr class="table-active">
-                <th id="player1-name" scope="row"></th>
+                <th id="player1-name-stats" scope="row">1</th>
                 <td id="player1-chartWins" >0</td>
                 <td id="player1-chartLosses" >0</td>
-                <td id="player1-totalPoints">0</td>
               </tr>
               <tr>
-                <th id="player2-name" scope="row"></th>
+                <th id="player2-name-stats" scope="row">2</th>
                 <td id="player2-chartWins" >0</td>
                 <td id="player2-chartLosses" >0</td>
-                <td id="player2-totalPoints">0</td>
               </tr>
             </tbody>
           </table>
