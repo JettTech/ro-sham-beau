@@ -35,7 +35,7 @@
       <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#letsplay">Let's Play!<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#lets-play">Let's Play!<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#score-board">Score Board</a>
@@ -70,32 +70,10 @@
       </div>
 
       <br/>
-<!--       <br/> -->
-<!--       <div class="row">
-        <div id="current-turn" class="col-sm-12"></div>
-      </div> -->
-
       <hr style="border:2px solid #dee2e6"/>
 
       <div id="game-div" class="row jumbotron">
-        <div id="player1" class="col-md-4">
-          <div class="card bg-primary mb-3">
-            <h3 id="player1-name" class="card-header text-light">First Player</h3>
-            <div class="card-body">
-              <h4 class="card-text">
-                <ul>
-                </ul>
-                <div id="player1-chosen" class="text-white"></div>
-                <div class="outcomes">
-<!--                   <div class="outcome-trackers text-white" id="player1-wins"></div>
-                  <div class="outcome-trackers text-white" id="player1-losses"></div> -->
-                </div>
-              </h4>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-md-4">
+        <div class="col-sm-12">
           <div class="card border-light mb-3">
             <h3 class="card-header">Referee</h3>
             <div class="card-body">
@@ -105,7 +83,23 @@
           </div>
         </div>
 
-        <div id="player2" class="col-md-4">
+        <div id="player1" class="col-sm-12 col-lg-6">
+          <div class="card bg-primary mb-3">
+            <h3 id="player1-name" class="card-header text-light">First Player</h3>
+            <div class="card-body">
+              <h4 class="card-text">
+                <ul>
+                </ul>
+                <div id="player1-chosen" class="text-white"></div>
+                <div class="outcomes">
+                </div>
+              </h4>
+            </div>
+          </div>
+        </div>
+        
+
+        <div id="player2" class="col-sm-12 col-lg-6">
           <div class="card bg-primary mb-3">
             <h3 id="player2-name" class="card-header text-light">Second Player</h3>
             <div class="card-body">
@@ -114,8 +108,6 @@
                 </ul>
                 <div id="player2-chosen" class="text-white"></div>
                 <div class="outcomes">
-<!--                   <div class="outcome-trackers text-white" id="player2-wins"></div>
-                  <div class="outcome-trackers text-white" id="player2-losses"></div> -->
                 </div>
               </h4>
             </div>

@@ -74,7 +74,7 @@ $(document).on("click", "li", function() {
   console.log("click");
   // Grabs text from li choice
   var clickChoice = $(this).text();
-  console.log(playerRef);
+  // console.log(playerRef);
 
   // Sets the choice in the current player object in firebase
   playerRef.child("choice").set(clickChoice);
@@ -130,10 +130,10 @@ playersRef.on("value", function(snapshot) {
     $("#player1-losses").text("Losses: " + firstPlayerData.losses);
     //GameBoard Stats
     $("#player1-name-stats").text(firstPlayerData.name);
-    $("#player1-chartWins").text("Wins: " + firstPlayerData.wins);
-    $("#player1-chartLosses").text("Losses: " + firstPlayerData.losses);
+    $("#player1-chartWins").text(firstPlayerData.wins);
+    $("#player1-chartLosses").text(firstPlayerData.losses);
   }
-  else {
+  else {500
     // If no player 1, clear win/loss data and show waiting
     $("#player1-name").text("One");
     $("#player1-wins").empty();
@@ -145,12 +145,12 @@ playersRef.on("value", function(snapshot) {
   // If there's a player 2, fill in name and win/loss data
   if (secondPlayerExists) {
     $("#player2-name").text(secondPlayerData.name);
-    $("#player2-wins").text("Wins: " + secondPlayerData.wins);
-    $("#player2-losses").text("Losses: " + secondPlayerData.losses);
+    $("#player2-wins").text(secondPlayerData.wins);
+    $("#player2-losses").text(secondPlayerData.losses);
     //GameBoard Stats
     $("#player2-name-stats").text(secondPlayerData.name);
-    $("#player2-chartWins").text("Wins: " + secondPlayerData.wins);
-    $("#player2-chartLosses").text("Losses: " + secondPlayerData.losses);
+    $("#player2-chartWins").text(secondPlayerData.wins);
+    $("#player2-chartLosses").text(secondPlayerData.losses);
   }
   else {
     // If no player 2, clear win/loss and show waiting
@@ -163,7 +163,7 @@ playersRef.on("value", function(snapshot) {
   }
 });
 
-// Detects changes in current turn key
+// !! Detects changes in current turn key!!
 currentTurnRef.on("value", function(snapshot) {
   // Gets current turn from snapshot
   currentTurn = snapshot.val();
@@ -176,22 +176,22 @@ currentTurnRef.on("value", function(snapshot) {
       // If its the current player's turn, tell them and show choices
       if (currentTurn === playerNum) {
         $("#current-turn").html("<h2>It's Your Turn!</h2>");
-        $("#player" + playerNum + " ul").append("<li><img src='./assets/rock-block.png'>Rock</li><li><img src='./assets/paper-block.png'>Paper</li><li><img src='./assets/scissors-block.png'>Scissors</li>");
+        $("#player" + playerNum + " ul").append("<li><img src='./assets/rock-block.png'><br/>Rock</li><li><img src='./assets/paper-block.png'><br/>Paper</li><li><img src='./assets/scissors-block.png'><br/>Scissors</li>");
       }
       else {
         // If it isnt the current players turn, tells them theyre waiting for player one
         $("#current-turn").html("<h2>Waiting for " + firstPlayerData.name + " to choose.</h2>");
       }
       // Designates active player via border change
-      $("#player1").css("border", "5px solid green");
-      $("#player2").css("border", "5px solid black");
+      $("#player1-name").css("border", "5px solid green");
+      $("#player2-name").css("border", "5px solid transparent");
     }
 
     else if (currentTurn === 2) {
       // On player's turn, show their choices
       if (currentTurn === playerNum) {
         $("#current-turn").html("<h2>It's Your Turn!</h2>");
-        $("#player" + playerNum + " ul").append("<li><img src='./assets/rock-block.png'>Rock</li><li><img src='./assets/paper-block.png'>Paper</li><li><img src='./assets/scissors-block.png'>Scissors</li>");
+        $("#player" + playerNum + " ul").append("<li><img src='./assets/rock-block.png'><br/>Rock</li><br/><li><img src='./assets/paper-block.png'><br/>Paper</li><li><img src='./assets/scissors-block.png'><br/>Scissors</li>");
       }
       else {
         // Informs current player that it is not yet their turn;;
@@ -199,8 +199,8 @@ currentTurnRef.on("value", function(snapshot) {
 
       }
       // Shows active player
-      $("#player2").css("border", "5px solid green");
-      $("#player1").css("border", "5px solid black");
+      $("#player2-name").css("border", "5px solid green");
+      $("#player1-name").css("border", "5px solid transparent");
     }
 
     else if (currentTurn === 3) {
@@ -223,7 +223,7 @@ currentTurnRef.on("value", function(snapshot) {
         }
       };
       //  Delay for 2 seconds to display results, then resets
-      setTimeout(resetGame, 5000);
+      setTimeout(resetGame, 3500);
     }
 
     else {
@@ -233,8 +233,8 @@ currentTurnRef.on("value", function(snapshot) {
       $("#player1 .card-body .card-text ul").empty();
       $("#player2 .card-body .card-text ul").empty();
       $("#current-turn").html("<h2>Waiting for another player to join.</h2>");
-      $("#player2").css("border", "5px solid black");
-      $("#player1").css("border", "5px solid black");
+      $("#player2-name").css("border", "5px solid transparent");
+      $("#player1-name").css("border", "5px solid transparent");
     }
   }
 });
@@ -299,6 +299,8 @@ function assignPlayerNum() {
 function playGame(player1choice, player2choice) {
 
   var playerOneWon = function() {
+    $("#current-turn").html("<h2> </h2>");
+
     $("#result").html("<h2>" + firstPlayerData.name + "</h2><h2>Wins!</h2>");
     if (playerNum === 1) {
       playersRef.child("1").child("wins").set(firstPlayerData.wins + 1);
