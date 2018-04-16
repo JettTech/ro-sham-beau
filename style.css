@@ -110,6 +110,12 @@ input {
   font-size: 22px;
 }
 
+@media only screen and (max-width: 474px) {
+  input#username {
+    font-size: 1.25em;
+  }
+}
+
 /*/=====================================================
 
   Turn Indicator Styling 
@@ -164,6 +170,12 @@ li {
 #result h2 {
   margin-top: 20px;
   font-size: 60px;
+}
+
+@media only screen and (max-width: 374px) {
+  #refereeId {
+    font-size: 1.05em;
+  }
 }
 
 
